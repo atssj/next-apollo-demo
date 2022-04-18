@@ -1,4 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
+import { Loader, Alert, Title } from '@mantine/core';
+import { AlertCircle } from 'tabler-icons-react';
 
 const NameComponent = () => {
   const query = gql`
@@ -10,12 +12,20 @@ const NameComponent = () => {
   `;
   const { loading, error, data } = useQuery(query);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error!</p>;
+  if (loading) return <Loader />;
+  if (error) {
+    return (
+      <Alert icon={<AlertCircle size={16} />} title="Error!" color="red">
+        Something went wrong.
+      </Alert>
+    );
+  }
 
   return (
-    <span>{data.User.name}</span>
-  )
-}
+    <Title>
+      Welcome, {data.User.name}.
+    </Title>
+  );
+};
 
 export default NameComponent;

@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { Button } from '@mantine/core';
+import { ChevronLeft } from 'tabler-icons-react';
 
 export default () => (
   <>
@@ -9,9 +11,12 @@ export default () => (
     </Head>
 
     <main>
+      <Link href="/">
+        <Button variant="light">
+          <ChevronLeft/>Back
+        </Button>
+      </Link>
       <h1>About page</h1>
-      <br/><br/>
-      <Link href="/"><a>Go Back</a></Link>
     </main>
   </>
 )

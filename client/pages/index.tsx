@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Name from '../components/Name';
+import { Title } from '@mantine/core';
 
 const LandingPage = () => (
   <>
@@ -10,10 +10,9 @@ const LandingPage = () => (
     </Head>
 
     <div>
-      Welcome, <Name />
-      <br/><br/>
-      <Link href="/about"><a>About</a></Link><br/>
-      <Link href="/contact"><a>Contact</a></Link>
+      <Title order={5} ml={10}>
+        <Name />
+      </Title>
     </div>
   </>
 );
