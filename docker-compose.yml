@@ -2,10 +2,12 @@ version: '3.9'
 
 services:
   app:
-    image: docker-next-apollo-dev
+    image: docker-nextjs-dev
     build:
       context: ./client
       dockerfile: ./Dockerfile
+    environment:
+      NEXT_PUBLIC_GRAPHQL_API: http://localhost:5000
     ports:
       - 3000:3000
     volumes:
@@ -14,7 +16,7 @@ services:
       - ./client/lib:/app/lib
 
   api:
-    image: docker-faker-graphql-dev
+    image: docker-graphql-dev
     build:
       context: ./server
       dockerfile: ./Dockerfile
