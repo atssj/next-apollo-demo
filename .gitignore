@@ -8,9 +8,12 @@ server/node_modules
 # testing
 coverage
 
-# next.js
+# client
 client/.next
 client/out
+
+# server
+server/dist
 
 # production
 client/build

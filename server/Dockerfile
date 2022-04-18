@@ -2,7 +2,10 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-COPY package.json yarn.lock *.js ./
+COPY . .
+
 RUN yarn install
+RUN yarn lint
+RUN yarn build
 
 CMD ["yarn", "start"]
