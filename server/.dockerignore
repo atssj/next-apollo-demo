@@ -1,0 +1,11 @@
+Dockerfile
+Dockerfile.prod
+.dockerignore
+node_modules
+yarn-error.log
+node-debug.log
+README.md
+.git
+dist
+now.json
+heroku.yml
