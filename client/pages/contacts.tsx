@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { Button } from '@mantine/core';
+import { Container, Button, Title } from '@mantine/core';
 import { ChevronLeft } from 'tabler-icons-react';
 
 const ContactPage = () => (
@@ -16,7 +16,9 @@ const ContactPage = () => (
           <ChevronLeft/>Back
         </Button>
       </Link>
-      <h1>Contact list</h1>
+      <Container>
+        <Title>Contact list</Title>
+      </Container>
     </main>
   </>
 );
