@@ -1,9 +1,10 @@
 import { withData } from 'next-apollo'
 import { HttpLink } from 'apollo-link-http'
 
+const graphqlUrl = `${process.env.NEXT_PUBLIC_GRAPHQL_API}/graphql`;
 const apolloConfig = {
   link: new HttpLink({
-    uri: 'http://localhost:5000/graphql'
+    uri: graphqlUrl
   })
 }
 
