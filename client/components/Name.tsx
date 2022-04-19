@@ -22,7 +22,7 @@ const NameComponent = () => {
   }
 
   return (
-    <Title>
+    <Title order={2}>
       Welcome, {data.User.name}.
     </Title>
   );
