@@ -8,22 +8,27 @@ export const typeDefs = gql`
   }
 
   type Contact {
+    id: Int!
     name: String!
     email: String!
     phoneNumber: String!
     address: String!
   }
 
-  # type ContactResponse {
-  #  contactlist: [Contact]
-  #  next: Boolean
-  # }
+  type PageInfo {
+    numberOfPages: Int,
+    hasNext: Boolean
+  }
+
+  type ContactList {
+    Contacts: [Contact],
+    PageInfo: PageInfo
+  }
 
   # Queries
 
   type Query {
     User: User
-    Contact: Contact
-    # ContactList(count: Int, page: Int): ContactResponse
+    ContactList(offset: Int): ContactList
   }
 `;
