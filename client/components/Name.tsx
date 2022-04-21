@@ -21,11 +21,7 @@ const NameComponent = () => {
     );
   }
 
-  return (
-    <Title order={2}>
-      Welcome, {data.User.name}.
-    </Title>
-  );
+  return <Title order={2}>Welcome, {data.User.name}.</Title>;
 };
 
 export default NameComponent;

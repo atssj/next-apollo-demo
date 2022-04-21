@@ -5,13 +5,13 @@ import Layout from '../components/Layout';
 import '../styles/global.css';
 
 const ContactApp = ({ Component, pageProps }: AppProps) => {
-    return (
-      <ApolloProvider client={client}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
-    );
-  }
+  return (
+    <ApolloProvider client={client}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ApolloProvider>
+  );
+};
 
 export default ContactApp;
