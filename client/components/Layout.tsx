@@ -24,7 +24,12 @@ export default function Layout({ children }) {
         navbarOffsetBreakpoint="sm"
         fixed
         navbar={
-          <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200 }}>
+          <Navbar
+            p="md"
+            hiddenBreakpoint="sm"
+            hidden={!opened}
+            width={{ sm: 200 }}
+          >
             <Link href="/contacts" passHref>
               <Box sx={{ display: 'flex' }}>
                 <AddressBook />
@@ -52,7 +57,9 @@ export default function Layout({ children }) {
               color: 'white'
             })}
           >
-            <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+            <div
+              style={{ display: 'flex', alignItems: 'center', height: '100%' }}
+            >
               <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
                 <Burger
                   opened={opened}

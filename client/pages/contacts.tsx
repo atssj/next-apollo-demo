@@ -12,13 +12,15 @@ const ContactPage = () => (
     </Head>
 
     <main>
-      <Link href="/">
+      <Link href="/" passHref>
         <Button variant="light">
-          <ChevronLeft/>Back
+          <ChevronLeft />
+          Back
         </Button>
       </Link>
       <Container>
-        <Title>Contact list</Title><br/>
+        <Title>Contact list</Title>
+        <br />
         <ContactList />
       </Container>
     </main>

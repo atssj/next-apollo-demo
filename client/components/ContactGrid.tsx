@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery } from '@apollo/client';
 import { Loader, Alert } from '@mantine/core';
 import { client } from '../lib/apollo-client';
 
@@ -14,7 +14,7 @@ export default function ContactGrid({ offset }) {
           email
           address
           phoneNumber
-        },
+        }
         PageInfo {
           numberOfPages
           hasNext
@@ -31,11 +31,11 @@ export default function ContactGrid({ offset }) {
   });
 
   const ContactCard = dynamic(() => import('./ContactCard'), {
-    suspense: true,
-  })
+    suspense: true
+  });
 
   if (loading) {
-    return ;
+    return;
   }
 
   if (error) {
@@ -43,12 +43,14 @@ export default function ContactGrid({ offset }) {
       <Alert title="Error" color="red">
         Something went wrong.
       </Alert>
-    )
+    );
   }
 
   return (
     <Suspense fallback={<Loader />}>
-      {data.ContactList.Contacts.map((contact) => (<ContactCard key={contact.id} contact={contact} />))}      
+      {data.ContactList.Contacts.map((contact) => (
+        <ContactCard key={contact.id} contact={contact} />
+      ))}
     </Suspense>
-  )
+  );
 }

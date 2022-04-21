@@ -16,12 +16,12 @@ export const typeDefs = gql`
   }
 
   type PageInfo {
-    numberOfPages: Int,
+    numberOfPages: Int
     hasNext: Boolean
   }
 
   type ContactList {
-    Contacts: [Contact],
+    Contacts: [Contact]
     PageInfo: PageInfo
   }
 

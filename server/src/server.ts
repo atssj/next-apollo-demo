@@ -17,13 +17,15 @@ async function startApolloServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
   });
   await server.start();
   server.applyMiddleware({ app });
-  await new Promise<void>(resolve => httpServer.listen({ port }, resolve));
+  await new Promise<void>((resolve) => httpServer.listen({ port }, resolve));
   // tslint:disable-next-line:no-console
-  console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
+  console.log(
+    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+  );
 }
 
 startApolloServer();

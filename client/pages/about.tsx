@@ -1,9 +1,10 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
 import { Button, Title, Container } from '@mantine/core';
 import { ChevronLeft } from 'tabler-icons-react';
 
-export default () => (
+const AboutPage: NextPage = () => (
   <>
     <Head>
       <title>My contacts | about</title>
@@ -11,9 +12,10 @@ export default () => (
     </Head>
 
     <main>
-      <Link href="/">
+      <Link href="/" passHref>
         <Button variant="light">
-          <ChevronLeft/>Back
+          <ChevronLeft />
+          Back
         </Button>
       </Link>
       <Container>
@@ -21,4 +23,6 @@ export default () => (
       </Container>
     </main>
   </>
-)
+);
+
+export default AboutPage;

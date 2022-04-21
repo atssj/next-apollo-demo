@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const graphqlUrl = `${process.env.NEXT_PUBLIC_GRAPHQL_API}/graphql`;
 
