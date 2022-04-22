@@ -11,7 +11,7 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main className="px-10 py-5">{children}</main>
+      <main className="p-5">{children}</main>
       <Footer />
     </>
   );

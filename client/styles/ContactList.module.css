@@ -3,3 +3,6 @@
   justify-content: center;
   padding: 20px 0;
 }
+.contactList {
+  @apply grid grid-flow-row gap-4 md:grid-cols-4;
+}
