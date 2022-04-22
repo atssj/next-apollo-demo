@@ -1,23 +1,36 @@
-import React from 'react';
-import { Paper, Text } from '@mantine/core';
+import type { FunctionComponent } from 'react';
+import type { TContact } from '../types/Contact';
 
-const ContactCard = ({ contact }) => {
+type Props = {
+  contact: TContact;
+};
+
+const ContactCard: FunctionComponent<Props> = ({ contact }) => {
   return (
-    <Paper
-      shadow="sm"
-      p="md"
-      sx={(theme) => ({
-        backgroundColor: theme.colors.gray[0],
-        '&:hover': {
-          backgroundColor: theme.colors.gray[1]
-        }
-      })}
-    >
-      <Text weight={500}>{contact.name}</Text>
-      <Text>{contact.email}</Text>
-      <Text>{contact.address}</Text>
-      <Text>{contact.phoneNumber}</Text>
-    </Paper>
+    <li className="bg-white drop-shadow-md rounded-md p-5">
+      <article>
+        <header className="text-2xl text-slate-800">{contact.name}</header>
+        <p>
+          <span className="font-semibold">Email: </span>
+          <a
+            href={`mailto:${contact.email}`}
+            className="text-blue-800 font-thin"
+          >
+            {contact.email}
+          </a>
+        </p>
+        <p>
+          <span className="font-semibold">Address: </span>
+          {contact.address}
+        </p>
+        <p>
+          <span className="font-semibold">Contact: </span>
+          <a href={`tel:${contact.phoneNumber}`} className="text-blue-800 font-thin">
+            {contact.phoneNumber}
+          </a>
+        </p>
+      </article>
+    </li>
   );
 };
 

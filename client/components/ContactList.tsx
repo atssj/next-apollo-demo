@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import { Paper, SimpleGrid, Text, Button, Notification } from '@mantine/core';
-import { ChevronDown } from 'tabler-icons-react';
+import type { FunctionComponent } from 'react';
+import { lazy, useState, Suspense } from 'react';
 import {
   CONTACT_LIST_PAGE_SIZE,
   MAX_NUMBER_OF_CONTACTS
 } from '../lib/constants';
 import styles from '../styles/ContactList.module.css';
-import ContactGrid from './ContactGrid';
+import Loader from './Loader';
 
-export default function ContactList(props) {
+const LoadMoreButton = lazy(() => import('./LoadMoreButton'));
+const ContactGrid = lazy(() => import('./ContactGrid'));
+
+const ContactList: FunctionComponent = () => {
   const [offset, setOffset] = useState(1);
   const [pageSize] = useState(CONTACT_LIST_PAGE_SIZE);
   const [cards, setCards] = useState([1]);
   const [hasMoreRecords, setHasMoreRecords] = useState(true);
 
-  const handleLoadMoreRecords = () => {
+  const handleLoadMoreRecords = async () => {
     const numberOfRecords = (offset + 1) * CONTACT_LIST_PAGE_SIZE;
 
     if (numberOfRecords > MAX_NUMBER_OF_CONTACTS) {
@@ -24,33 +26,38 @@ export default function ContactList(props) {
 
     setOffset(offset + 1);
     setHasMoreRecords(true);
+
     const pages = new Array(offset + 1).fill(0).map((item, index) => index + 1);
     setCards(pages);
   };
 
   return (
     <>
-      <div className={styles.center}>
+      <p className={styles.center}>
         {hasMoreRecords ? (
-          <Button color={'violet'} onClick={handleLoadMoreRecords}>
-            <ChevronDown />
-            Load another {pageSize} contacts
-          </Button>
+          <LoadMoreButton
+            label={`Load another ${pageSize} contacts`}
+            onClick={handleLoadMoreRecords}
+          ></LoadMoreButton>
         ) : (
-          <Notification color="red">No more records</Notification>
+          <p className="text-xl red-600">No more records</p>
         )}
-      </div>
-      <Paper shadow="xs" p="md">
-        <Text size="sm" pb={20} color="blue">
+      </p>
+      <section>
+        <p className="text-sm text-blue-700 pb-5">
           Displayed {offset * pageSize} records.
-        </Text>
-        <SimpleGrid cols={3} spacing="sm">
-          {Array.isArray(cards) &&
-            cards.map((card) => (
-              <ContactGrid key={card} offset={card}></ContactGrid>
-            ))}
-        </SimpleGrid>
-      </Paper>
+        </p>
+        <Suspense fallback={<Loader />}>
+          <ul className={styles.contactList}>
+            {Array.isArray(cards) &&
+              cards.map((card) => (
+                <ContactGrid key={card} offset={card}></ContactGrid>
+              ))}
+          </ul>
+        </Suspense>
+      </section>
     </>
   );
-}
+};
+
+export default ContactList;

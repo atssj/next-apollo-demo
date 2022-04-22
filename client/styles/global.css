@@ -1,6 +1,13 @@
-/* reset */
-html,
-body {
-  padding: 0;
-  margin: 0;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  #__next {
+    @apply h-full w-full;
+  }
+  html,
+  body {
+    @apply h-full;
+  }
 }
