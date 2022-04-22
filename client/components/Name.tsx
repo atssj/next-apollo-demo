@@ -1,8 +1,7 @@
+import type { FunctionComponent } from 'react';
 import { gql, useQuery } from '@apollo/client';
-import { Loader, Alert, Title } from '@mantine/core';
-import { AlertCircle } from 'tabler-icons-react';
 
-const NameComponent = () => {
+const NameComponent: FunctionComponent = () => {
   const query = gql`
     query User {
       User {
@@ -12,16 +11,12 @@ const NameComponent = () => {
   `;
   const { loading, error, data } = useQuery(query);
 
-  if (loading) return <Loader />;
+  if (loading) return <p className="text-2xl blue-600">Loading...</p>;
   if (error) {
-    return (
-      <Alert icon={<AlertCircle size={16} />} title="Error!" color="red">
-        Something went wrong.
-      </Alert>
-    );
+    return <p className="text-2xl red-600">Something went wrong!</p>;
   }
 
-  return <Title order={2}>Welcome, {data.User.name}.</Title>;
+  return <h1 className="text-3xl">Welcome, {data.User.name}.</h1>;
 };
 
 export default NameComponent;

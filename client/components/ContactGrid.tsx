@@ -1,10 +1,15 @@
+import type { FunctionComponent } from 'react';
+import type { TContact } from '../types/Contact';
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { gql, useQuery } from '@apollo/client';
-import { Loader, Alert } from '@mantine/core';
 import { client } from '../lib/apollo-client';
 
-export default function ContactGrid({ offset }) {
+type Props = {
+  offset: number;
+};
+
+const ContactGrid: FunctionComponent<Props> = ({ offset }) => {
   const CONTACT_LIST = gql`
     query ContactList($offset: Int) {
       ContactList(offset: $offset) {
@@ -34,23 +39,18 @@ export default function ContactGrid({ offset }) {
     suspense: true
   });
 
-  if (loading) {
-    return;
-  }
-
   if (error) {
-    return (
-      <Alert title="Error" color="red">
-        Something went wrong.
-      </Alert>
-    );
+    return <p className="text-2xl red-600">Something went wrong!</p>;
   }
 
   return (
-    <Suspense fallback={<Loader />}>
-      {data.ContactList.Contacts.map((contact) => (
-        <ContactCard key={contact.id} contact={contact} />
-      ))}
+    <Suspense fallback={<p className="text-2xl blue-600">Loading...</p>}>
+      {data &&
+        data.ContactList.Contacts.map((contact: TContact) => (
+          <ContactCard key={contact.id} contact={contact} />
+        ))}
     </Suspense>
   );
-}
+};
+
+export default ContactGrid;

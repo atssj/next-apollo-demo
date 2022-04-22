@@ -1,14 +1,14 @@
+import type { FunctionComponent } from 'react';
 import React, { useState } from 'react';
-import { Paper, SimpleGrid, Text, Button, Notification } from '@mantine/core';
-import { ChevronDown } from 'tabler-icons-react';
 import {
   CONTACT_LIST_PAGE_SIZE,
   MAX_NUMBER_OF_CONTACTS
 } from '../lib/constants';
 import styles from '../styles/ContactList.module.css';
 import ContactGrid from './ContactGrid';
+import LoadMoreButton from './LoadMoreButton';
 
-export default function ContactList(props) {
+const ContactList: FunctionComponent = () => {
   const [offset, setOffset] = useState(1);
   const [pageSize] = useState(CONTACT_LIST_PAGE_SIZE);
   const [cards, setCards] = useState([1]);
@@ -30,27 +30,29 @@ export default function ContactList(props) {
 
   return (
     <>
-      <div className={styles.center}>
+      <p className={styles.center}>
         {hasMoreRecords ? (
-          <Button color={'violet'} onClick={handleLoadMoreRecords}>
-            <ChevronDown />
-            Load another {pageSize} contacts
-          </Button>
+          <LoadMoreButton
+            label={`Load another ${pageSize} contacts`}
+            onClick={handleLoadMoreRecords}
+          ></LoadMoreButton>
         ) : (
-          <Notification color="red">No more records</Notification>
+          <p className="text-xl red-600">No more records</p>
         )}
-      </div>
-      <Paper shadow="xs" p="md">
-        <Text size="sm" pb={20} color="blue">
+      </p>
+      <section>
+        <p className="text-sm text-blue-700">
           Displayed {offset * pageSize} records.
-        </Text>
-        <SimpleGrid cols={3} spacing="sm">
+        </p>
+        <ul className="py-5 grid gap-4 grid-cols-4">
           {Array.isArray(cards) &&
             cards.map((card) => (
               <ContactGrid key={card} offset={card}></ContactGrid>
             ))}
-        </SimpleGrid>
-      </Paper>
+        </ul>
+      </section>
     </>
   );
-}
+};
+
+export default ContactList;
