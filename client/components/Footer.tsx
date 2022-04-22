@@ -11,7 +11,7 @@ const Footer: FunctionComponent = () => {
   return (
     <footer className="flex flex-col py-3 md:py-5">
       <p className="text-sm text-center text-gray-500">
-        Copyright &copy; My contact list - {year}
+        Copyright &copy; MyContacts - {year}
       </p>
     </footer>
   );

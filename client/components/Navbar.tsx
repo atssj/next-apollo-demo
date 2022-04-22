@@ -38,7 +38,7 @@ const Navbar: FunctionComponent = () => {
             </Link>
           </li>
         </ul>
-        <button type="button" onClick={toggleMobileMenu}>
+        <button type="button" onClick={toggleMobileMenu} className="block md:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-8 w-8"
@@ -51,13 +51,13 @@ const Navbar: FunctionComponent = () => {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
+                d="M6 18L18 6M6 6l12 12"
               />
             ) : (
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
+                d="M4 6h16M4 12h16M4 18h16"
               />
             )}
           </svg>

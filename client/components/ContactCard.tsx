@@ -25,7 +25,7 @@ const ContactCard: FunctionComponent<Props> = ({ contact }) => {
         </p>
         <p>
           <span className="font-semibold">Contact: </span>
-          <a href={`tel:${contact.email}`} className="text-blue-800 font-thin">
+          <a href={`tel:${contact.phoneNumber}`} className="text-blue-800 font-thin">
             {contact.phoneNumber}
           </a>
         </p>
