@@ -1,0 +1,30 @@
+name: Build and test
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+jobs:
+  build:
+    name: Client code build
+    strategy:
+      matrix:
+        node_version: [14]
+        runs-on: [ubuntu-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Setup Node JS 14.x
+      uses: actions/setup-node@v1
+      with:
+        node_version: ${{ matrix.node_version }}
+    - name: Yarn install, lint, build and test
+      run: |
+        cd client
+        yarn install
+        yarn lint
+        yarn build
+        yarn test
+    env:
+        GITHUB_TOKEN: ${{ github.token }}
