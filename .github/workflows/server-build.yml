@@ -17,8 +17,7 @@ jobs:
       - name: Setup Node JS 14.x
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
-          cache: 'yarn'
+          node-version: "14"
       - name: Yarn install, lint, build
         run: |
           cd server
