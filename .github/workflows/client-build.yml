@@ -25,12 +25,14 @@ jobs:
           yarn lint
           yarn build
       - name: Generate coverage report
-        run: yarn coverage
+        run: |
+          cd client
+          yarn coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage/
+          directory: ./client/coverage/
           fail_ci_if_error: true
           files: ./coverage-final.json
           flags: unittests
