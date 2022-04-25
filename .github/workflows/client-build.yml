@@ -30,7 +30,5 @@ jobs:
           yarn coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
-        run: |
-          curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codecov
     env:
       GITHUB_TOKEN: ${{ github.token }}
