@@ -30,14 +30,7 @@ jobs:
           yarn coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./client/coverage/
-          fail_ci_if_error: true
-          files: ./coverage-final.json
-          flags: unittests
-          name: codecov-umbrella
-          path_to_write_report: ./coverage/codecov_report.txt
-          verbose: true
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codecov
     env:
       GITHUB_TOKEN: ${{ github.token }}
