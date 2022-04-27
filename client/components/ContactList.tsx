@@ -33,29 +33,29 @@ const ContactList: FunctionComponent = () => {
 
   return (
     <>
-      <p className={styles.center}>
-        {hasMoreRecords ? (
-          <LoadMoreButton
-            label={`Load another ${pageSize} contacts`}
-            onClick={handleLoadMoreRecords}
-          ></LoadMoreButton>
-        ) : (
-          <p className="text-xl red-600">No more records</p>
-        )}
-      </p>
-      <section>
-        <p className="text-sm text-blue-700 pb-5">
-          Displayed {offset * pageSize} records.
+      <Suspense fallback={<Loader />}>
+        <p className={styles.center}>
+          {hasMoreRecords ? (
+            <LoadMoreButton
+              label={`Load another ${pageSize} contacts`}
+              onClick={handleLoadMoreRecords}
+            ></LoadMoreButton>
+          ) : (
+            <p className="text-xl red-600">No more records</p>
+          )}
         </p>
-        <Suspense fallback={<Loader />}>
+        <section>
+          <p className="text-sm text-blue-700 pb-5">
+            Displayed {offset * pageSize} records.
+          </p>
           <ul className={styles.contactList}>
             {Array.isArray(cards) &&
               cards.map((card) => (
                 <ContactGrid key={card} offset={card}></ContactGrid>
               ))}
           </ul>
-        </Suspense>
-      </section>
+        </section>
+      </Suspense>
     </>
   );
 };

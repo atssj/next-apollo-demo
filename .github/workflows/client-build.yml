@@ -1,0 +1,34 @@
+name: Client code build and test
+on:
+  pull_request:
+    paths-ignore:
+      - "**.md"
+jobs:
+  build:
+    name: Client code build
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Node JS 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - name: Yarn install, lint, build and test
+        run: |
+          cd client
+          yarn install
+          yarn lint
+          yarn build
+      - name: Generate coverage report
+        run: |
+          cd client
+          yarn coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
